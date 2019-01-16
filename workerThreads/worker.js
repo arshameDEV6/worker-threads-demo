@@ -2,12 +2,20 @@ function spawnProcess() {
     setInterval(() => {
         spawnProcess();
 
-        new Worker('workerProcess.js');
+        var spawnedWorker = new Worker('workerProcess.js');
+        spawnedWorker.postMessage(accumulator);
 
-    }, 1000);
+
+    }, 5000);
 }
 
 spawnProcess();
+
+var accumulator = {
+    value: 0
+};
+
+
 
 /**
  * A better comparision would be a simple addition machine.
